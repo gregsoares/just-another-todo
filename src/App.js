@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import uuid from "react-uuid";
+import { useState } from "react";
+import AddItem from "./components/Molecules/AddItem";
+import ItemList from "./components/organisms/ItemList";
 
-function App() {
+const App = () => {
+  const [items, setItems] = useState([]);
+
+  const handleAddItem = (item) => setItems([...items, { id: uuid(), ...item }]);
+  const handleItemClick = (id) =>
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, isActive: !item.isActive } : item
+      )
+    );
+  console.log(items);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="bg-gray-100 py-4 px-1">
+      <AddItem handleAddItem={() => handleAddItem} />
+      <ItemList items={items} onClick={handleItemClick} />
+    </section>
   );
-}
+};
 
 export default App;
