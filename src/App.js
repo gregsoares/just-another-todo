@@ -16,7 +16,7 @@ const App = () => {
   console.log(items);
   return (
     <section className="bg-gray-100 py-4 px-1">
-      <AddItem handleAddItem={() => handleAddItem} />
+      <AddItem handleAddItem={handleAddItem} />
       <ItemList items={items} onClick={handleItemClick} />
     </section>
   );
