@@ -11,18 +11,18 @@ const Item = ({ item, onClick, handleRemoveItem }) => {
           type="checkbox"
           name="nameOfChoice"
           value="1"
-          checked={!isActive}
+          checked={isActive}
           onChange={() => onClick(id)}
           onClick={() => onClick(id)}
         />
 
         <div className="space-y-2 text-left">
           <div className="space-y-0.5 inline-block" onClick={() => onClick(id)}>
-            <Title text={title} />
+            <Title text={title} isActive={isActive} />
             <Text text={category} />
           </div>
           <div className="my-auto mx-2 inline-block">
-            <Button text={"✔"} type="check" onClick={onClick} />
+            <Button text={"✔"} type="check" onClick={() => onClick(id)} />
             <Button
               onClick={() => handleRemoveItem(id)}
               text={"❌"}
